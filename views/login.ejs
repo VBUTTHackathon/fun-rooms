@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>CARE Challenge</title>
+
+ <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">-->
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+  <!-- Form Mixin-->
+  <!-- Input Mixin-->
+  <!-- Button Mixin-->
+  <!-- Pen Title-->
+  <!-- Form Module-->
+  <div class="main-container">
+    <div class="flex-item"><img style="max-width: 320px;margin: 5px;" src="img/vp_logo.png"></div>
+    <div class="flex-item module form-module">
+      <div class="form">
+        <h2>Login with your Vistaprint account</h2>
+        <form action="/login" method="post">
+          <input type="text" name="username" placeholder="Username" />
+          <input type="password" name="password" placeholder="Password" />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <div class="cta">
+        <% if(messages && messages.error) { %>
+          <p><%= messages.error %></p>
+          <% } %>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
