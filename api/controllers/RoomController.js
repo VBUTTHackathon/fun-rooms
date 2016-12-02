@@ -5,7 +5,31 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-module.exports = {
-
+function getUserById(id) {
+  return User.findOne(id)
+    .then(function (user) {
+      if (!user) {
+        throw new CustomError("Could not find current user.");
+      }
+      return user;
+    });
 };
 
+module.exports = {
+  rooms: function (req, res) {
+    return Room.find()
+      .populate('mates')
+      .then(function (rooms) {
+        res.json({
+          data: rooms.map(function (room) {
+            return {
+              confirmed: room.confirmed ? 'Yes' : 'No',
+              roommates: room.mates.map(function(mate){
+                return mate.getFullName();
+              })
+            }
+          })
+      });
+    });
+  }
+};
