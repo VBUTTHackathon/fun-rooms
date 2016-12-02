@@ -42,7 +42,7 @@ module.exports.routes = {
   '/partner/:id': 'DuoController.pickPartner',
   '/duo/confirm': 'DuoController.confirm',
   '/duo/cancel': 'DuoController.cancel',
-  '/duos': 'DuoController.duos',
+  '/rooms': 'RoomController.rooms',
 
   /***************************************************************************
   *                                                                          *

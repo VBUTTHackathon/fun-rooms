@@ -39,9 +39,7 @@ module.exports.policies = {
       '*': false,
       index: ['isAuthenticated','isAdmin']
     },
-    DuoController: {
-      '*':  ['isAuthenticated'],
-      duos: ['isAuthenticated','isAdmin']
+    RoomController: {
     },
     UserController: {
       '*': ['isAuthenticated']
