@@ -31,12 +31,6 @@ module.exports = {
         team:{
           type: 'string'
         },
-        channel:{
-          type: 'string'
-        },
-        category:{
-          type: 'string'
-        },
         isAdmin:{
           type: 'boolean',
           defaultsTo: false
@@ -50,8 +44,8 @@ module.exports = {
             enum: ['none','chose','chosen','confirmed'],
             defaultsTo: 'none'
         },
-        duo: {
-            model: 'duo'
+        room: {
+            model: 'room'
         },
         getFullName: function() {
             return this.fullName || ((this.firstName || "") + (this.lastName ? " " + this.lastName : ""));
