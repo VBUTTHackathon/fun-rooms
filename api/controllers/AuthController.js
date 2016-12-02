@@ -26,16 +26,22 @@ module.exports = {
         return res.redirect('/login');
       }
       User.findOne({
-          username: ldapUser.sAMAccountName
+          employeeId: ldapUser.extensionAttribute2
         }).then(function (user) {
           if (!user) {
-            return User.create({
-              username: ldapUser.sAMAccountName,
-              firstName: ldapUser.givenName,
-              lastName: ldapUser.sn
-            });
+            req.flash('error', 'You are not part of the Challenge.');
+            return res.redirect('/login');
           }
-          return user;
+          if(!user.active){
+             user.username = ldapUser.sAMAccountName;
+             user.firstName = ldapUser.givenName;
+             user.lastName = ldapUser.sn;
+             user.email = ldapUser.mail;
+             user.active = true;
+          }
+          return user.save().then(function(){
+            return user;
+          });
         }).then(function (user) {
           req.logIn(user, function(err) {
             if (err) {

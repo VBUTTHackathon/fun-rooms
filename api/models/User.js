@@ -8,6 +8,11 @@
 module.exports = {
 
     attributes: {
+        employeeId:{
+          type: 'integer',
+          unique: true,
+          required: true
+        },
         email:{
           type: 'string'
         },
@@ -23,7 +28,20 @@ module.exports = {
         fullName:{
           type: 'string'
         },
+        team:{
+          type: 'string'
+        },
+        channel:{
+          type: 'string'
+        },
+        category:{
+          type: 'string'
+        },
         isAdmin:{
+          type: 'boolean',
+          defaultsTo: false
+        },
+        active:{
           type: 'boolean',
           defaultsTo: false
         },
@@ -35,8 +53,8 @@ module.exports = {
         duo: {
             model: 'duo'
         },
-        fullName: function() {
-            return (this.firstName || "") + (this.lastName ? " " + this.lastName : "");
+        getFullName: function() {
+            return this.fullName || ((this.firstName || "") + (this.lastName ? " " + this.lastName : ""));
         },
         toJSON: function() {
             var obj = this.toObject();
@@ -44,6 +62,8 @@ module.exports = {
                     username: obj.username,
                     firstName: obj.firstName,
                     lastName: obj.lastName,
+                    fullName: this.getFullName(),
+                    team: obj.team,
                     button: '<input type="button" onClick="pickPartner('+obj.id+')" id="picker-'+obj.id+'" class="btn btn-info picker" value="Pick as a partner">'
             };
         },

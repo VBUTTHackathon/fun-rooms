@@ -14,10 +14,9 @@ module.exports = {
     picked: {
       model: 'user'
     },
-    state: {
-      type: 'string',
-      enum: ['oneside', 'twosides'],
-      defaultsTo: 'oneside'
+    confirmed: {
+      type: 'boolean',
+      defaultsTo: 'false'
     },
     date: {
       type: 'date'
